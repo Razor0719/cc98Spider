@@ -9,7 +9,7 @@ class cc98Login(scrapy.Spider):
     name = 'cc98Boards'
     custom_settings = {
         'ITEM_PIPELINES': {
-            'cc98.pipelines.Cc98BoardPipeline': 300,
+            'cc98.pipelines.Cc98BoardsPipeline': 300,
         }
     }
 

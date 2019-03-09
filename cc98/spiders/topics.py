@@ -12,7 +12,7 @@ class cc98Topics(scrapy.Spider):
     name = 'cc98Topics'
     custom_settings = {
         'ITEM_PIPELINES': {
-            'cc98.pipelines.Cc98TopicPipeline': 300,
+            'cc98.pipelines.Cc98TopicsPipeline': 300,
         }
     }
 

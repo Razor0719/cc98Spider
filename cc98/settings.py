@@ -64,7 +64,8 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'cc98.pipelines.Cc98BoardPipeline': 200,
+    'cc98.pipelines.Cc98BoardsPipeline': 200,
+    'cc98.pipelines.Cc98TopicsPipeline': 300,
     'cc98.pipelines.Cc98TopicPipeline': 300,
 }
 
