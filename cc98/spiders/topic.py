@@ -41,6 +41,7 @@ class cc98Topic(scrapy.Spider):
                 content_item = ContentItem()
                 content_item['id'] = content.get('id')
                 content_item['boardId'] = content.get('boardId')
+                content_item['topicId'] = content.get('topicId')
                 content_item['content'] = content.get('content')
                 content_item['floor'] = content.get('floor')
                 content_item['isLZ'] = content.get('isLZ')

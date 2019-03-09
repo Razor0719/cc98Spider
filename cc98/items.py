@@ -32,6 +32,7 @@ class TopicItem(Cc98Item):
 
 class ContentItem(Cc98Item):
     boardId = scrapy.Field()
+    topicId = scrapy.Field()
     content = scrapy.Field()
     floor = scrapy.Field()
     isLZ = scrapy.Field()
