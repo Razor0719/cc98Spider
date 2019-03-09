@@ -17,6 +17,9 @@ class Cc98Item(scrapy.Item):
 class BoardItem(Cc98Item):
     id = scrapy.Field()
     name = scrapy.Field()
+    topicCount = scrapy.Field()
+    postCount = scrapy.Field()
+    description = scrapy.Field()
 
 
 class TopicItem(Cc98Item):
@@ -24,4 +27,5 @@ class TopicItem(Cc98Item):
     boardId = scrapy.Field()
     title = scrapy.Field()
     time = scrapy.Field()
+    replyCount = scrapy.Field()
     hitCount = scrapy.Field()
