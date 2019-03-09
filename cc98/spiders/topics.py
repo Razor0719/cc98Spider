@@ -1,7 +1,6 @@
 import datetime
 import json
 import math
-import time
 
 import scrapy
 

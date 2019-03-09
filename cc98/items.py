@@ -11,11 +11,11 @@ import scrapy
 class Cc98Item(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
+    id = scrapy.Field()
     pass
 
 
 class BoardItem(Cc98Item):
-    id = scrapy.Field()
     name = scrapy.Field()
     topicCount = scrapy.Field()
     postCount = scrapy.Field()
@@ -23,9 +23,20 @@ class BoardItem(Cc98Item):
 
 
 class TopicItem(Cc98Item):
-    id = scrapy.Field()
     boardId = scrapy.Field()
     title = scrapy.Field()
     time = scrapy.Field()
     replyCount = scrapy.Field()
     hitCount = scrapy.Field()
+
+
+class ContentItem(Cc98Item):
+    boardId = scrapy.Field()
+    content = scrapy.Field()
+    floor = scrapy.Field()
+    isLZ = scrapy.Field()
+    length = scrapy.Field()
+    parentId = scrapy.Field()
+    userId = scrapy.Field()
+    userName = scrapy.Field()
+    time = scrapy.Field()

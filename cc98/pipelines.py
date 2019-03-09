@@ -29,11 +29,26 @@ class Cc98Pipeline(object):
         self.client.close()
 
 
-class Cc98BoardPipeline(Cc98Pipeline):
+class Cc98BoardsPipeline(Cc98Pipeline):
 
     def __init__(self, mongoUrl, mongoPort, mongoDb):
         super().__init__(mongoUrl, mongoPort, mongoDb)
-        self.mongoCollection = 'board'
+        self.mongoCollection = 'boards'
+
+    def open_spider(self, spider):
+        super().open_spider(spider)
+        self.collection = self.db[self.mongoCollection]
+
+    def process_item(self, item, spider):
+        self.collection.update({'id': item['id']}, item, upsert=True)
+        return item
+
+
+class Cc98TopicsPipeline(Cc98Pipeline):
+
+    def __init__(self, mongoUrl, mongoPort, mongoDb):
+        super().__init__(mongoUrl, mongoPort, mongoDb)
+        self.mongoCollection = 'topics'
 
     def open_spider(self, spider):
         super().open_spider(spider)
