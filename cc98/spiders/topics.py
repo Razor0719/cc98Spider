@@ -33,7 +33,6 @@ class cc98Topics(scrapy.Spider):
                 headers={'Referer': 'http://www.cc98.org/board/%s' % self.boardId})
 
     def parse(self, response):
-        print(response.url)
         topics = json.loads(response.body)
         for topic in topics:
             date = topic.get('time')
