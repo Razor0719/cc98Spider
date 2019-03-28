@@ -1,5 +1,7 @@
 import datetime
 import json
+import re
+
 import math
 
 import scrapy
@@ -40,7 +42,7 @@ class cc98Topics(scrapy.Spider):
             topic_item['id'] = topic.get('id')
             topic_item['boardId'] = topic.get('boardId')
             topic_item['title'] = topic.get('title')
-            topic_item['time'] = datetime.datetime.strptime(date[0:date.find('T')], '%Y-%m-%d')
+            topic_item['time'] = datetime.datetime.strptime(re.match(r'(\d{4}(-|/|.)\d{1,2}\2\d{1,2})T((\d{1,2}:\d{1,2}:\d{1,2}).(\d{3}))', date).group(), '%Y-%m-%dT%H:%M:%S.%f')
             topic_item['replyCount'] = topic.get('replyCount')
             topic_item['hitCount'] = topic.get('hitCount')
             yield topic_item
