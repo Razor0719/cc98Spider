@@ -1,12 +1,10 @@
-import datetime
 import json
-import re
 
 import math
-
 import scrapy
 
 from cc98.items import TopicItem
+from cc98.spiders.parse import Cc98parse
 
 
 class cc98Topics(scrapy.Spider):
@@ -28,7 +26,7 @@ class cc98Topics(scrapy.Spider):
 
     def parse_board(self, response):
         pages = math.ceil(json.loads(response.body).get('topicCount') / 20)
-        for offset in range(0, pages):
+        for offset in range(0, 500):
             yield scrapy.Request(
                 'https://api.cc98.org/board/%s/topic?from=%s&size=20' % (self.boardId, offset * 20),
                 method='GET',
@@ -42,7 +40,7 @@ class cc98Topics(scrapy.Spider):
             topic_item['id'] = topic.get('id')
             topic_item['boardId'] = topic.get('boardId')
             topic_item['title'] = topic.get('title')
-            topic_item['time'] = datetime.datetime.strptime(re.match(r'(\d{4}(-|/|.)\d{1,2}\2\d{1,2})T((\d{1,2}:\d{1,2}:\d{1,2}).(\d{3}))', date).group(), '%Y-%m-%dT%H:%M:%S.%f')
             topic_item['replyCount'] = topic.get('replyCount')
             topic_item['hitCount'] = topic.get('hitCount')
+            Cc98parse.parse_tz(topic_item, date)
             yield topic_item

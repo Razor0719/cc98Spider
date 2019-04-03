@@ -1,10 +1,10 @@
-import datetime
 import json
-import math
 
+import math
 import scrapy
 
 from cc98.items import ContentItem
+from cc98.spiders.parse import Cc98parse
 
 
 class cc98Topic(scrapy.Spider):
@@ -49,5 +49,5 @@ class cc98Topic(scrapy.Spider):
                 content_item['parentId'] = content.get('parentId')
                 content_item['userId'] = content.get('userId')
                 content_item['userName'] = content.get('userName')
-                content_item['time'] = datetime.datetime.strptime(date[0:date.find('T')], '%Y-%m-%d')
+                Cc98parse.parse_tz(content_item, date)
                 yield content_item
